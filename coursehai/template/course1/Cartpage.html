@@ -1,0 +1,33 @@
+{% extends "course1/HomeC.html" %}
+{% load static %}
+{% block title %}
+
+{% endblock title %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/Products.css' %}" />
+
+{% endblock head %}
+
+{% block body %}
+<div class="modal-body">
+    <ul class="list-group" id="cartpage">
+    </ul>
+</div>
+<script>
+     // showing values in cart page code started
+    var cart = JSON.parse(localStorage.getItem("cart"));
+    var cartpopkrnahai = JSON.parse(localStorage.getItem("cart"))
+    var htmlstr = ""
+    Object.keys(cartpopkrnahai).map(items => {
+
+        htmlstr = htmlstr + " " + `<li class="list-group-item d-flex justify-content-between">${cart[items].name}<span class="badge p-2 badge-primary">${cart[items].value}</span></li>`
+
+    })
+    document.getElementById("cartpage").innerHTML = htmlstr
+
+    console.log(htmlstr)
+     // showing values in cart page code ended
+</script>
+{% endblock body %}

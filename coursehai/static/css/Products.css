@@ -1,0 +1,28 @@
+.product_details{
+    background-color:#112e61;
+  }
+  .product_main{
+  padding-right: 50px;
+  padding-left: 50px;
+  }
+  .portfolio_info{
+    background-color:#FFFFFF;
+    padding-top:30px ;
+    padding-left:30px ;
+    padding-right:30px ;
+    padding-bottom:20px ;
+    box-shadow:  -2px  2px 15px #dfdfdf;
+  }
+  ul{
+    list-style: none;
+  }
+  .Product_name{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+  }
+  .portfolio_description{
+    padding-left:30px ;
+    padding-top:30px ;
+    padding-right:30px ;
+    /* padding-bottom:30px ; */
+  }

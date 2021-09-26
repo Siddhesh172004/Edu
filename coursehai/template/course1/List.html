@@ -1,0 +1,60 @@
+{% extends "course1/HomeC.html" %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="{% static 'css/Products.css' %}" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <title>Hello, world!</title>
+</head>
+
+<body>
+  {% block body %}
+  {% for key,value in Data.items%}
+  <div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">{{key}}</h1>
+    <div class="row">
+      {% for i in value%}
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card card1" style="width: 18rem">
+          <img class="card-img-top img-fluid" src="/media/{{i.image}}" alt="Card image cap" />
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-dark text-light text-center">
+              {{i.name}}
+            </li>
+            <li class="list-group-item bg-success text-light text-center">
+              {{i.price}} INR
+            </li>
+          </ul>
+          <div class="card-body bg-primary text-light">
+            <p class="card-text">{{i.desc}} ( {{i.category}} )</p>
+            <div class="text-center">
+              <button class="add_to_cart btn-sm btn-warning" onclick="addtocart('{{i.id}}','{{i.name}}')">
+                Add to cart
+              </button>
+              <a href="detail/{{i.id}}"><button class="add_to_cart btn-sm btn-warning">
+                  View details
+                </button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+
+  {% endfor %} 
+  {% endblock body %}
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- fonts link  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <title>{% block title %} {% endblock title %}</title>
+  {% block head %} {% endblock head %}
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop">Shop</a>
+        </li>
+        <!-- This is for modal when someone clicks cart options started  -->
+        <li class="nav-item">
+          <!-- Button trigger modal -->
+          <button type="button"  onclick="cartpopupfun()" style="cursor: pointer" class="btn btn-primary disabled" data-toggle="modal"
+            data-target="#cardpop">
+            Cart(<span id="carthai">0</span>)
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="cardpop" tabindex="-1" role="dialog" aria-labelledby="cardpopmodel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="cardpopmodel">Cart Items</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-group" id="cartpopupfun">
+                    Cart is empty
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                  </button>
+                  
+<form action="/shop/checkout/" method="POST">
+  {% csrf_token %}
+  <input type="hidden" id="card-hidden" name="cartJson">
+
+  <button onclick="addHiddenVal()" type="submit" href="" class="btn btn-warning">
+    Checkout
+  </button>
+</form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- This is for modal when someone clicks cart options ended  -->
+
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/contact">Contact</a>
+        </li>
+      </ul>
+      {% if user.is_authenticated%}
+       <a href="/members/logout/"><button class="btn btn-success my-2 my-sm-0 mr-4" type="submit">Logout</button></a>
+       <a href="/members/signup"><button class="btn btn-success my-2 my-sm-0 mr-4" type="submit">Signup</button></a>
+      {%else%}
+      <a href="members/login"><button class="btn btn-success my-2 my-sm-0 mr-4" type="submit">Login</button></a>
+       <a href="/members/signup"><button class="btn btn-success my-2 my-sm-0 mr-4" type="submit">Signup</button></a>
+      {%endif%}
+
+       
+
+    </div>
+  </nav>
+
+{% if messages %}
+            <ul class="messages list-unstyled">
+                {% for message in messages %}
+                <li {% if message.tags %}>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              <strong>{{message}}</strong>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+<!-- importing file that contains all cart logic started -->
+<script defer src="{%static 'js/cartlogics.js'%}"> </script>
+<!-- importing file that contains all cart logic ended -->
+
+  {% block body %}
+  
+ <center class="mt-5"> <h1>Please Register</h1> <a href="/shop/blogcreate"><button class="btn btn-success my-2 my-sm-0 mr-4" type="submit">Register</button></a>
+ </center>
+
+
+
+
+
+
+   {% endblock body %}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

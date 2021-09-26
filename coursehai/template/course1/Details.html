@@ -1,0 +1,92 @@
+{% extends "course1/HomeC.html" %}
+{% load static %}
+{% block title %}
+
+{% endblock title %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/Products.css' %}" />
+
+{% endblock head %}
+
+{% block body %}
+
+{% if error == "null" %}
+
+<!-- baneeer starts -->
+<section class=" product_details mg-5">
+  <article class=" py-3 text-center text-white ">
+    <div>
+      <ol class="breadcrumb pl-0 ml-5 product_details ">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="/shop">Shop</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Cart</li>
+      </ol>
+
+      <h3 class="d-flex flex-start ml-5 ">Product Details</h3>
+      <!-- <button class="btn btn-warning">Contact Now</button>   -->
+    </div>
+
+  </article>
+
+
+</section>
+<!-- baneeer starts -->
+
+
+<div class="container-fluid  mt-5 product_main">
+
+  <nav aria-label="breadcrumb">
+
+  </nav>
+
+  <div class="row">
+
+    <div class="col-lg-7 col-md-7">
+      <img src="/media/{{Data.image}}" class="img-fluid" />
+    </div>
+
+
+    <div class="col-lg-5 col-md-5">
+      <div class="portfolio_info">
+        <h3 class="text-uppercase Product_name"> {{Data.name}}</h3>
+        <ul>
+          <li class="mt-1"><strong>Category</strong> : {{Data.category}}</li>
+          <li class="mt-1"><strong>Seller</strong> : ASU Company</li>
+          <li class="mt-1"><strong>Date</strong> : {{Data.pub_date}}</li>
+          <li class="mt-1"><strong>Project URL</strong> : <a href="#">www.example.com</a></li>
+        </ul>
+      </div>
+      <div class="portfolio_description">
+        <h2>This is an example of product detail</h2>
+        <p>
+          {{Data.extra_details}}
+        </p>
+        <div>
+          <button class="add_to_cart btn btn-warning" onclick="addtocart('{{Data.id}}','{{Data.name}}')">
+            Add to cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+</div>
+</div>
+
+{%else%}
+<h1>Product doent exists</h1>
+{% endif %}
+
+
+{% endblock body %}
+

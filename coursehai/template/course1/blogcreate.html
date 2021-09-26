@@ -1,0 +1,54 @@
+{% extends "course1/HomeC.html" %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block body %}
+
+
+<div class="container">
+    
+  <div class="row">
+      <div class="display-3 m-auto pt-2">
+          Create your own product
+      </div>
+      
+      <div class="col-12">
+      <form action="/shop/display/" enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+      
+          
+          <div class="mb-3">
+            <label for="name2" class="form-label">Title</label>
+            <input type="text" class="form-control" id="name2" name="name2">
+          </div>
+      
+          <div class="mb-3">
+            <label for="phone2" class="form-label">Price</label>
+            <input type="number" class="form-control" id="phone2" name="phone2" aria-describedby="numHelp">
+            <div id="numHelp" class="form-text"></div>
+          </div>
+      
+          
+          
+          <div class="form-floating mb-3">
+              <textarea class="form-control" placeholder="describe your product" name="desc2" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="floatingTextarea2">Description</label>
+            </div>
+      
+            <div class="input-group mb-3">
+              <input type="file" name="image2" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
+            </div>
+      
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+  </div>
+  </div>
+</div>
+
+{% endblock body %}
